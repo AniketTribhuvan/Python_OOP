@@ -189,3 +189,339 @@ print(student.name)
 Here,
 
 `self.name` belongs to the current object.
+
+---
+
+# Instance Variables
+
+Instance variables belong to individual objects.
+
+Every object has its own separate copy.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+student1 = Student("Aniket")
+student2 = Student("Rahul")
+
+print(student1.name)
+print(student2.name)
+```
+
+Output:
+
+```python
+Aniket
+Rahul
+```
+
+Changing one object's instance variable does not affect another object.
+
+---
+
+# Class Variables
+
+Class variables are shared by all objects of a class.
+
+Example:
+
+```python
+class Student:
+
+    school = "ABC School"
+
+    def __init__(self, name):
+        self.name = name
+
+student1 = Student("Aniket")
+student2 = Student("Rahul")
+
+print(student1.school)
+print(student2.school)
+```
+
+Output:
+
+```python
+ABC School
+ABC School
+```
+
+If the class variable changes, every object sees the updated value.
+
+---
+
+## Instance Variables vs Class Variables
+
+| Instance Variable | Class Variable |
+|-------------------|----------------|
+| Belongs to object | Belongs to class |
+| Separate copy for every object | Shared by every object |
+| Defined using `self` | Defined directly inside class |
+| Stores object-specific data | Stores common data |
+
+---
+
+# Encapsulation
+
+## What is Encapsulation?
+
+Encapsulation means wrapping data and methods together inside a class while restricting direct access to important data.
+
+Instead of allowing users to modify internal variables directly, we provide controlled access.
+
+Benefits:
+
+- Data protection
+- Better validation
+- Prevent accidental modification
+- Cleaner design
+
+---
+
+# Access Modifiers
+
+Python mainly provides three types of access levels.
+
+## Public Members
+
+Public members can be accessed from anywhere.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.name = "Aniket"
+
+student = Student()
+
+print(student.name)
+```
+
+---
+
+## Protected Members
+
+Protected members use a single underscore `_`.
+
+They indicate that the variable should only be used inside the class or its child classes.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self._marks = 95
+```
+
+Protected members can still be accessed outside the class, but it is discouraged.
+
+---
+
+## Private Members
+
+Private members use double underscores `__`.
+
+Python performs name mangling to reduce accidental external access.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.__marks = 95
+```
+
+Trying to access it directly:
+
+```python
+student = Student()
+
+print(student.__marks)
+```
+
+Output:
+
+```python
+AttributeError
+```
+
+---
+
+# Getters and Setters
+
+## Why Use Getters and Setters?
+
+Sometimes we don't want users to access or modify an object's data directly.
+
+Instead, we control access through getter and setter methods.
+
+- A **getter** returns the value of a private attribute.
+- A **setter** updates the value after performing validation.
+
+This helps protect the object's data and prevents invalid values from being stored.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.__marks = 0
+
+    def get_marks(self):
+        return self.__marks
+
+    def set_marks(self, marks):
+
+        if marks >= 0:
+            self.__marks = marks
+
+student = Student()
+
+student.set_marks(95)
+
+print(student.get_marks())
+```
+
+Output:
+
+```python
+95
+```
+
+Validation helps prevent invalid data from entering the object.
+
+---
+
+## The Problem with Traditional Getters and Setters
+
+Although traditional getters and setters provide data protection, they make code less readable.
+
+Instead of accessing an attribute directly, we must call methods.
+
+Example:
+
+```python
+student.set_marks(95)
+
+print(student.get_marks())
+```
+
+This looks similar to languages like Java or C++, but it is not considered the Pythonic way.
+
+Python provides a cleaner solution using **properties**.
+
+---
+
+## @property
+
+### What is @property?
+
+`@property` is a built-in decorator that allows a method to be accessed like an attribute.
+
+It acts as a getter without requiring parentheses.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.__marks = 0
+
+    @property
+    def marks(self):
+        return self.__marks
+
+student = Student()
+
+print(student.marks)
+```
+
+Output:
+
+```python
+0
+```
+
+Although `marks` is actually a method, it behaves like a normal attribute.
+
+---
+
+## @property.setter
+
+### What is @property.setter?
+
+`@property.setter` defines the setter method for a property.
+
+It allows us to update an attribute while still performing validation.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.__marks = 0
+
+    @property
+    def marks(self):
+        return self.__marks
+
+    @marks.setter
+    def marks(self, value):
+
+        if value >= 0:
+            self.__marks = value
+
+student = Student()
+
+student.marks = 95
+
+print(student.marks)
+```
+
+Output:
+
+```python
+95
+```
+
+Now the object looks like it has a normal public attribute, but the getter and setter methods are executed automatically.
+
+---
+
+# Traditional Getters & Setters vs @property
+
+| Traditional Getters & Setters | @property |
+|-------------------------------|-----------|
+| Uses methods like `get_marks()` and `set_marks()` | Uses normal attribute syntax |
+| Requires parentheses | No parentheses required |
+| Less readable | More readable |
+| Similar to Java/C++ | Pythonic approach |
+
+---
+
+## Why is @property Better?
+
+`@property` provides the benefits of getters and setters while keeping the syntax simple.
+
+Advantages:
+
+- Cleaner code
+- More readable
+- Supports validation
+- Protects private data
+- Allows implementation changes without changing how the attribute is used
+
+For these reasons, `@property` is the preferred way to implement getters and setters in Python.
