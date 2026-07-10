@@ -525,3 +525,169 @@ Advantages:
 - Allows implementation changes without changing how the attribute is used
 
 For these reasons, `@property` is the preferred way to implement getters and setters in Python.
+
+# Inheritance
+
+## What is Inheritance?
+
+Inheritance allows one class to acquire the properties and methods of another class.
+
+The existing class is called the parent class.
+
+The new class is called the child class.
+
+Syntax:
+
+```python
+class Parent:
+    pass
+
+class Child(Parent):
+    pass
+```
+
+---
+
+## Why Use Inheritance?
+
+Inheritance helps:
+
+- Reuse code
+- Reduce duplication
+- Build class hierarchies
+- Extend existing functionality
+
+Example:
+
+```python
+class Animal:
+
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):
+    pass
+
+dog = Dog()
+
+dog.speak()
+```
+
+Output:
+
+```python
+Animal speaks
+```
+
+---
+
+# Method Overriding
+
+Method overriding allows a child class to provide its own implementation of a parent class method.
+
+Example:
+
+```python
+class Animal:
+
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):
+
+    def speak(self):
+        print("Dog barks")
+
+dog = Dog()
+
+dog.speak()
+```
+
+Output:
+
+```python
+Dog barks
+```
+
+The child method replaces the parent implementation.
+
+---
+
+# Composition
+
+## What is Composition?
+
+Composition represents a **Has-A** relationship.
+
+Instead of inheriting from another class, one object contains another object.
+
+Example:
+
+```python
+class Engine:
+
+    def start(self):
+        print("Engine Started")
+
+class Car:
+
+    def __init__(self):
+        self.engine = Engine()
+
+    def start(self):
+        self.engine.start()
+
+car = Car()
+
+car.start()
+```
+
+Output:
+
+```python
+Engine Started
+```
+
+Here:
+
+- A Car **has an** Engine.
+- Car does not inherit from Engine.
+
+---
+
+## Composition vs Inheritance
+
+| Composition | Inheritance |
+|-------------|-------------|
+| Has-A relationship | Is-A relationship |
+| Uses one object inside another | Child extends parent |
+| More flexible | Can create rigid hierarchies |
+| Preferred in many enterprise applications | Useful when true parent-child relationship exists |
+
+---
+
+# Important Revision Points
+
+Classes are blueprints for creating objects.
+
+Objects are instances of classes.
+
+`__init__()` is the constructor and runs automatically when an object is created.
+
+`self` refers to the current object.
+
+Instance variables belong to individual objects.
+
+Class variables are shared among all objects.
+
+Encapsulation protects internal data from direct modification.
+
+Private members use double underscores (`__`).
+
+Getters retrieve data, while setters update data after validation.
+
+Inheritance allows child classes to reuse parent functionality.
+
+Method overriding lets child classes provide specialized behavior.
+
+Composition represents a **Has-A** relationship and promotes flexible object design.

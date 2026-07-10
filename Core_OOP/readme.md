@@ -17,6 +17,8 @@ These concepts form the foundation of writing organized, reusable, and scalable 
 - getters & setters
 - inheritance
 - method overriding
+- Types of inheritance
+- composition
 
 ## Skills Developed
 
@@ -27,10 +29,11 @@ These concepts form the foundation of writing organized, reusable, and scalable 
 - Controlling attribute access with getters and setters
 - Reusing code through inheritance
 - Customizing inherited behavior using method overriding
+- Building flexible object relationships using composition
 
 ## Mini Projects / Practice
 
-- bank_account_simulator.py
+- library_membership_system
 
 ## Key Takeaways
 
@@ -55,5 +58,14 @@ Core_OOP/
 
   encapsulation/
     access_modifiers.py                      # Public, protected, and private members
-    getters_and_setters.py                   # Data validation using getters and setters
+    getters_and_setter.py                    # Data validation using getters and setters
+  
+  inheritance/
+    inheritance.py                           # Basic inheritance
+    method_overriding.py                     # Overriding inherited methods
+    composition.py                           # Understanding the has-a relationship
+    inheritance_vs_composition.md            # Difference between Is-A & Has-A Relationship
+  
+  Practice/
+    library_membership_system.py             # Mini project
 ```
