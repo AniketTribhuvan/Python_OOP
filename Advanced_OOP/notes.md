@@ -172,3 +172,86 @@ Output:
 | Can access class variables | Cannot access class or instance variables directly |
 | Can modify class state | Mainly used for helper functions |
 | Often used as alternative constructors | Used for utility operations |
+
+---
+
+# Multiple Inheritance
+
+## What is Multiple Inheritance?
+
+Multiple inheritance allows a child class to inherit from more than one parent class.
+
+Syntax:
+
+```python
+class Parent1:
+    pass
+
+class Parent2:
+    pass
+
+class Child(Parent1, Parent2):
+    pass
+```
+
+Example:
+
+```python
+class Camera:
+
+    def capture(self):
+        print("Capturing Photo")
+
+class MusicPlayer:
+
+    def play(self):
+        print("Playing Music")
+
+class Phone(Camera, MusicPlayer):
+    pass
+
+phone = Phone()
+
+phone.capture()
+phone.play()
+```
+
+Output:
+
+```python
+Capturing Photo
+Playing Music
+```
+
+---
+
+# Multilevel Inheritance
+
+## What is Multilevel Inheritance?
+
+Multilevel inheritance forms a chain where one child becomes the parent of another class.
+
+Example:
+
+```python
+class Animal:
+
+    def eat(self):
+        print("Eating")
+
+class Mammal(Animal):
+    pass
+
+class Dog(Mammal):
+    pass
+
+dog = Dog()
+
+dog.eat()
+```
+
+Output:
+
+```python
+Eating
+```
