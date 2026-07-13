@@ -255,3 +255,226 @@ Output:
 ```python
 Eating
 ```
+
+---
+
+# Hierarchical Inheritance
+
+## What is Hierarchical Inheritance?
+
+Hierarchical inheritance occurs when multiple child classes inherit from the same parent class.
+
+Example:
+
+```python
+class Animal:
+
+    def speak(self):
+        print("Animal Sound")
+
+class Dog(Animal):
+    pass
+
+class Cat(Animal):
+    pass
+```
+
+Both `Dog` and `Cat` inherit from `Animal`.
+
+---
+
+# Hybrid Inheritance
+
+## What is Hybrid Inheritance?
+
+Hybrid inheritance combines two or more inheritance types within the same program.
+
+It commonly combines:
+
+- Multiple inheritance
+- Multilevel inheritance
+- Hierarchical inheritance
+
+Example:
+
+```python
+class A:
+    pass
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+class D(B, C):
+    pass
+```
+
+Hybrid inheritance is powerful but can become difficult to manage if not designed carefully.
+
+---
+
+# Method Resolution Order (MRO)
+
+## What is MRO?
+
+When a class inherits from multiple parent classes, Python must decide where to search for methods.
+
+The order Python follows is called the Method Resolution Order (MRO).
+
+Python follows the C3 Linearization algorithm to compute this order.
+
+---
+
+## Example
+
+```python
+class A:
+
+    def show(self):
+        print("Class A")
+
+class B(A):
+
+    def show(self):
+        print("Class B")
+
+class C(A):
+
+    def show(self):
+        print("Class C")
+
+class D(B, C):
+    pass
+
+obj = D()
+
+obj.show()
+```
+
+Output:
+
+```python
+Class B
+```
+
+Python checks classes according to the MRO and executes the first matching method.
+
+---
+
+## Viewing the MRO
+
+We can view the MRO using:
+
+```python
+print(D.mro())
+```
+
+or
+
+```python
+print(D.__mro__)
+```
+
+This helps understand how Python searches for methods.
+
+---
+
+# Object Introspection
+
+## What is Introspection?
+
+Introspection is the ability to examine an object during runtime.
+
+Python provides built-in utilities that allow us to inspect:
+
+- Attributes
+- Methods
+- Documentation
+- Internal object information
+
+---
+
+# dir()
+
+The `dir()` function lists the available attributes and methods of an object.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.name = "Aniket"
+
+student = Student()
+
+print(dir(student))
+```
+
+This is useful when exploring unfamiliar objects.
+
+---
+
+# __dict__
+
+The `__dict__` attribute stores an object's writable attributes as a dictionary.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        self.name = "Aniket"
+        self.age = 17
+
+student = Student()
+
+print(student.__dict__)
+```
+
+Output:
+
+```python
+{'name': 'Aniket', 'age': 17}
+```
+
+This helps inspect an object's current state.
+
+---
+
+# help()
+
+The `help()` function displays documentation about objects, functions, classes, or modules.
+
+Example:
+
+```python
+help(str)
+```
+
+or
+
+```python
+help(Student)
+```
+
+It provides useful information about available methods and their descriptions.
+
+---
+
+# Why is Introspection Useful?
+
+Introspection helps developers:
+
+- Explore unknown objects
+- Understand available methods
+- Debug programs
+- Learn third-party libraries
+- Inspect object state during runtime
+
+It is especially useful when working with large Python libraries.
+
+---
