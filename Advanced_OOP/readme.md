@@ -17,9 +17,10 @@ These concepts extend the core OOP principles by introducing Python-specific fea
 - hierarchical inheritance
 - method resolution order (MRO)
 - object introspection
-- `dir()`
-- `__dict__`
-- `help()`
+- `dir()`, `__dict__` & `help()`
+- magic methods (dunder methods)
+- `__init__`, `__len__` & `__getitem__`
+- operator overloading
 
 ## Skills Developed
 
@@ -30,6 +31,8 @@ These concepts extend the core OOP principles by introducing Python-specific fea
 - Avoiding common inheritance issues
 - Inspecting objects dynamically at runtime
 - Exploring object attributes and methods using introspection tools
+- Building custom Python objects
+- Overloading operators for mathematical operations
 
 ## Key Takeaways
 
@@ -40,6 +43,8 @@ These concepts extend the core OOP principles by introducing Python-specific fea
 - Hybrid and hierarchical inheritance combine different inheritance structures.
 - Python follows Method Resolution Order (MRO) to determine which method should be executed.
 - Introspection utilities help inspect an object's attributes, methods, and documentation during runtime.
+- Magic methods allow Python objects to behave like built-in data types.
+- Operator overloading enables mathematical operations on custom objects.
 
 ## 🗂️ Project Structure
 
@@ -56,3 +61,8 @@ Advanced_OOP/
     01_multiple_inheritance.py                          # Understanding multiple inheritance
     02_multilevel_inheritance.py                        # Understanding multilevel inheritance
     03_hierarchical_and_hybrid_inheritance.py           # Understanding hybrid inheritance & hierarchical inheritance
+  
+  05_introspection.py                                   # Understand using dir(), __dict__ & help()
+
+  06_dunder_methods/
+    01_dunder_methods.md                                # Understanding __init__, __len__ & __getitem__

@@ -478,3 +478,349 @@ Introspection helps developers:
 It is especially useful when working with large Python libraries.
 
 ---
+
+# Python Magic Methods & Math Engine
+
+Python provides special methods, also known as **magic methods** or **dunder (double underscore) methods**, that allow custom objects to behave like Python's built-in data types.
+
+These methods are automatically called by Python when certain operations are performed on an object.
+
+For example:
+
+- Creating an object calls `__init__()`
+- Using `len()` calls `__len__()`
+- Accessing an index calls `__getitem__()`
+- Printing an object calls `__str__()`
+- Using `+` calls `__add__()`
+
+Magic methods make custom classes feel natural and Pythonic.
+
+This section covers:
+
+- Magic Methods
+- Operator Overloading
+- Object Representation
+- Memory Optimization
+- Abstract Base Classes (ABC)
+- Abstraction
+
+---
+
+# Magic Methods (Dunder Methods)
+
+## What are Magic Methods?
+
+Magic methods are special methods whose names begin and end with double underscores (`__`).
+
+Python automatically invokes these methods when corresponding operations are performed on an object.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self):
+        print("Object Created")
+
+student = Student()
+```
+
+Output:
+
+```python
+Object Created
+```
+
+The constructor is automatically called when an object is created.
+
+---
+
+# __init__()
+
+## What is __init__()?
+
+`__init__()` is the constructor of a class.
+
+It initializes an object's attributes immediately after the object is created.
+
+Example:
+
+```python
+class Tensor1D:
+
+    def __init__(self, values):
+        self.values = values
+
+tensor = Tensor1D([1, 2, 3])
+
+print(tensor.values)
+```
+
+Output:
+
+```python
+[1, 2, 3]
+```
+
+---
+
+# __len__()
+
+## What is __len__()?
+
+`__len__()` defines what should happen when the `len()` function is used on an object.
+
+Example:
+
+```python
+class Tensor1D:
+
+    def __init__(self, values):
+        self.values = values
+
+    def __len__(self):
+        return len(self.values)
+
+tensor = Tensor1D([10, 20, 30])
+
+print(len(tensor))
+```
+
+Output:
+
+```python
+3
+```
+
+---
+
+# __getitem__()
+
+## What is __getitem__()?
+
+`__getitem__()` makes an object subscriptable.
+
+It is automatically called when square brackets (`[]`) are used.
+
+Example:
+
+```python
+class Tensor1D:
+
+    def __init__(self, values):
+        self.values = values
+
+    def __getitem__(self, index):
+        return self.values[index]
+
+tensor = Tensor1D([5, 10, 15])
+
+print(tensor[1])
+```
+
+Output:
+
+```python
+10
+```
+
+After implementing `__getitem__()`, custom objects behave like lists.
+
+---
+
+# Operator Overloading
+
+## What is Operator Overloading?
+
+Operator overloading allows Python operators to work with custom objects.
+
+Instead of using built-in behavior, Python calls specific magic methods.
+
+Some common operator overloads are:
+
+| Operator | Magic Method |
+|-----------|--------------|
+| `+` | `__add__()` |
+| `-` | `__sub__()` |
+| `*` | `__mul__()` |
+| `/` | `__truediv__()` |
+| `==` | `__eq__()` |
+
+---
+
+# __add__()
+
+`__add__()` defines how two objects should behave when the `+` operator is used.
+
+Example:
+
+```python
+class Student:
+    def __init__(self, marks):
+        # Initialize the marks attribute
+        self.marks = marks
+
+    def __add__(self, other):
+        # Overload the '+' operator.
+        # When 's1 + s2' is executed, Python internally calls:
+        # s1.__add__(s2)
+        return self.marks + other.marks
+
+
+# Create two Student objects
+s1 = Student(80)
+s2 = Student(90)
+
+# Internally executes: s1.__add__(s2)
+print(s1 + s2)  # Output: 170
+```
+
+---
+
+# Object Representation
+
+Sometimes we print an object directly.
+
+Without defining representation methods, Python displays something like:
+
+```python
+<__main__.Student object at 0x000001A2>
+```
+
+This is difficult to understand.
+
+Python provides two magic methods to customize object representation.
+
+---
+
+# __str__()
+
+`__str__()` returns a user-friendly representation of an object.
+
+It is automatically called when using `print()`.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f"Student: {self.name}"
+
+student = Student("Aniket")
+
+print(student)
+```
+
+Output:
+
+```python
+Student: Aniket
+```
+
+---
+
+# __repr__()
+
+`__repr__()` returns a detailed representation mainly intended for developers and debugging.
+
+Example:
+
+```python
+class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f"Student(name='{self.name}')"
+
+student = Student("Aniket")
+
+print(repr(student))
+```
+
+Output:
+
+```python
+Student(name='Aniket')
+```
+
+---
+
+## __str__() vs __repr__()
+
+| __str__() | __repr__() |
+|------------|------------|
+| User-friendly output | Developer-friendly output |
+| Used by `print()` | Used by `repr()` and debugging |
+| Easy to read | More detailed representation |
+
+---
+
+# __slots__()
+
+## What is __slots__()?
+
+Normally, Python stores object attributes inside a dictionary (`__dict__`).
+
+This provides flexibility but consumes additional memory.
+
+`__slots__` tells Python exactly which attributes an object can have.
+
+This reduces memory usage and prevents adding new attributes dynamically.
+
+Example:
+
+```python
+class Student:
+
+    __slots__ = ["name", "age"]
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+```
+
+Now only the `name` and `age` attributes can exist inside the object.
+
+---
+
+## Advantages of __slots__()
+
+- Reduces memory usage
+- Faster attribute access
+- Prevents accidental creation of new attributes
+
+---
+
+# Abstract Base Classes (ABC)
+
+## What is an Abstract Base Class?
+
+An Abstract Base Class (ABC) defines a common blueprint for child classes.
+
+It cannot be instantiated directly.
+
+Instead, child classes must implement the abstract methods.
+
+Python provides the `abc` module for creating abstract classes.
+
+---
+
+## Example
+
+```python
+from abc import ABC, abstractmethod
+
+class Student(ABC):
+
+    @abstractmethod
+    def display(self):
+        pass
+```
+
+Any class inheriting from `Student` must implement the `display()` method.
