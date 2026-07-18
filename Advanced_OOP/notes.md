@@ -797,6 +797,49 @@ Now only the `name` and `age` attributes can exist inside the object.
 
 ---
 
+# Abstraction
+
+## What is Abstraction?
+
+Abstraction means hiding implementation details while exposing only the essential interface.
+
+The user knows **what** an object does without knowing **how** it does it internally.
+
+Example:
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+rectangle = Rectangle(10, 5)
+
+print(rectangle.area())
+```
+
+Output:
+
+```python
+50
+```
+
+The user simply calls `area()` without worrying about its internal implementation.
+
+---
+
 # Abstract Base Classes (ABC)
 
 ## What is an Abstract Base Class?
@@ -824,3 +867,65 @@ class Student(ABC):
 ```
 
 Any class inheriting from `Student` must implement the `display()` method.
+
+# Why Use Abstraction?
+
+Abstraction helps:
+
+- Hide implementation details
+- Reduce complexity
+- Improve maintainability
+- Create consistent interfaces
+- Build scalable software
+
+It is widely used in frameworks and large applications.
+
+---
+
+# Important Revision Points
+
+Class methods use `cls` and operate on the class itself.
+
+`@classmethod` is commonly used to create alternative constructors.
+
+Static methods do not access instance or class variables.
+
+`@staticmethod` is mainly used for utility functions.
+
+Multiple inheritance allows a class to inherit from more than one parent.
+
+Multilevel inheritance creates inheritance chains.
+
+Hierarchical inheritance allows multiple child classes to inherit from one parent.
+
+Hybrid inheritance combines multiple inheritance structures.
+
+Python follows Method Resolution Order (MRO) to determine which method is executed.
+
+`dir()` lists an object's available attributes and methods.
+
+`__dict__` stores an object's writable attributes as a dictionary.
+
+`help()` displays built-in documentation for classes, functions, and modules.
+
+`__init__()` initializes object attributes.
+
+`__len__()` defines the behavior of `len()`.
+
+`__getitem__()` allows objects to support indexing.
+
+Operator overloading enables operators like `+` and `*` to work with custom objects.
+
+`__add__()` overloads the addition operator.
+
+`__mul__()` overloads the multiplication operator.
+
+`__str__()` returns a user-friendly string representation.
+
+`__repr__()` returns a detailed representation intended for developers.
+
+`__slots__` reduces memory usage by restricting object attributes.
+
+Abstract Base Classes (ABC) define common interfaces for child classes.
+
+Abstraction hides implementation details while exposing only essential functionality.

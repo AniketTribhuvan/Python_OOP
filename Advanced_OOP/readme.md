@@ -6,6 +6,8 @@ This folder focuses on advanced Object-Oriented Programming concepts in Python.
 
 These concepts extend the core OOP principles by introducing Python-specific features, advanced inheritance structures, and object introspection techniques. Mastering them helps in writing cleaner, more maintainable, and more Pythonic code.
 
+Also transform ordinary Python objects into mathematical objects by implementing magic methods, operator overloading, object representation, memory optimization, and abstraction. These concepts are essential for designing scalable data structures used in AI, machine learning, and scientific computing.
+
 ## Topics Covered
 
 - class methods
@@ -66,3 +68,8 @@ Advanced_OOP/
 
   06_dunder_methods/
     01_dunder_methods.md                                # Understanding __init__, __len__ & __getitem__
+    02_str_repr_and_slots.md                            # Understanding __str__, __repr__ & __slots__
+  
+  07_operator_overloading.py                            # Understand operator overloading deeply
+
+  08_abstraction.md                                     # Understand abstraction, protocol & @abstractmethod
