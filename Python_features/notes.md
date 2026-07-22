@@ -68,3 +68,67 @@ Output:
 ```python
 [2, 4, 6]
 ```
+---
+
+# Decorators
+
+## What is a Decorator?
+
+A decorator is a function that modifies or extends the behavior of another function without changing its original code.
+
+Decorators are created using the `@` symbol.
+
+Syntax:
+
+```python
+@decorator
+def function():
+    pass
+```
+
+---
+
+## Why Use Decorators?
+
+Decorators help add common functionality such as:
+
+- Logging
+- Timing
+- Authentication
+- Validation
+- Caching
+
+without modifying the original function.
+
+---
+
+## Example
+
+```python
+def decorator(function):
+
+    def wrapper():
+        print("Before Function")
+
+        function()
+
+        print("After Function")
+
+    return wrapper
+
+@decorator
+def greet():
+    print("Hello")
+
+greet()
+```
+
+Output:
+
+```python
+Before Function
+Hello
+After Function
+```
+
+The original function remains unchanged, but its behavior is extended.
