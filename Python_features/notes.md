@@ -132,3 +132,176 @@ After Function
 ```
 
 The original function remains unchanged, but its behavior is extended.
+
+---
+
+# functools.wraps
+
+## Why Use wraps?
+
+When a function is decorated, Python replaces the original function with the wrapper function.
+
+As a result, important information like the function's name and documentation is lost.
+
+Example:
+
+```python
+def decorator(function):
+
+    def wrapper():
+        function()
+
+    return wrapper
+
+@decorator
+def greet():
+    pass
+
+print(greet.__name__)
+```
+
+Output:
+
+```python
+wrapper
+```
+
+Instead of `"greet"`, Python displays `"wrapper"`.
+
+---
+
+## Using functools.wraps
+
+The `wraps` decorator preserves the original function's metadata.
+
+Example:
+
+```python
+from functools import wraps
+
+def decorator(function):
+
+    @wraps(function)
+    def wrapper():
+        function()
+
+    return wrapper
+
+@decorator
+def greet():
+    pass
+
+print(greet.__name__)
+```
+
+Output:
+
+```python
+greet
+```
+
+---
+
+# Generators
+
+## What is a Generator?
+
+A generator is a special type of function that produces values one at a time using the `yield` keyword.
+
+Unlike a normal function, a generator does not return all values at once.
+
+Instead, it pauses after each `yield` and resumes when requested.
+
+---
+
+## Example
+
+```python
+def numbers():
+
+    yield 1
+    yield 2
+    yield 3
+
+generator = numbers()
+
+print(next(generator))
+print(next(generator))
+print(next(generator))
+```
+
+Output:
+
+```python
+1
+2
+3
+```
+
+---
+
+## yield vs return
+
+| yield | return |
+|--------|---------|
+| Produces one value at a time | Returns everything at once |
+| Pauses function execution | Ends function execution |
+| Memory efficient | Stores complete result in memory |
+
+---
+
+# Generator Expressions
+
+Generator expressions provide a shorter syntax for creating generators.
+
+Syntax:
+
+```python
+generator = (expression for item in iterable)
+```
+
+Example:
+
+```python
+squares = (number * number for number in range(5))
+
+for value in squares:
+    print(value)
+```
+
+Output:
+
+```python
+0
+1
+4
+9
+16
+```
+
+Generator expressions look similar to list comprehensions but use parentheses instead of square brackets.
+
+---
+
+# Lazy Evaluation
+
+## What is Lazy Evaluation?
+
+Lazy evaluation means values are created only when they are needed.
+
+Instead of computing everything immediately, computation happens one step at a time.
+
+Generators use lazy evaluation.
+
+Example:
+
+```python
+def numbers():
+
+    for number in range(1000000):
+        yield number
+```
+
+Even though the generator can produce one million numbers, only one number exists in memory at any given time.
+
+This makes generators extremely memory efficient.
