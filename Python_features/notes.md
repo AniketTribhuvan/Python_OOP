@@ -656,6 +656,202 @@ Static typing provides several advantages:
 
 ---
 
+# Context Managers
+
+## What is a Context Manager?
+
+A context manager is an object that automatically manages resources before and after a block of code executes.
+
+It is commonly used with the `with` statement.
+
+Instead of manually opening and closing resources, a context manager ensures they are properly cleaned up, even if an error occurs.
+
+Syntax:
+
+```python
+with resource:
+    # Code
+```
+
+---
+
+## Why Use Context Managers?
+
+Context managers help:
+
+- Automatically release resources
+- Prevent resource leaks
+- Make code cleaner
+- Handle exceptions safely
+
+Common use cases include:
+
+- File handling
+- Database connections
+- Memory monitoring
+- Network connections
+
+---
+
+# __enter__()
+
+The `__enter__()` method executes when entering the `with` block.
+
+It prepares the resource and optionally returns an object.
+
+Example:
+
+```python
+class Demo:
+
+    def __enter__(self):
+        print("Entering Context")
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("Exiting Context")
+
+with Demo():
+    print("Inside Block")
+```
+
+Output:
+
+```python
+Entering Context
+Inside Block
+Exiting Context
+```
+
+---
+
+# __exit__()
+
+The `__exit__()` method executes when leaving the `with` block.
+
+It performs cleanup operations, regardless of whether an exception occurred.
+
+Its parameters are:
+
+- `exc_type`
+- `exc_value`
+- `traceback`
+
+These provide information about any exception raised inside the `with` block.
+
+---
+
+# Exception Handling
+
+## What is an Exception?
+
+An exception is an error that occurs while a program is running.
+
+If an exception is not handled, the program terminates.
+
+Example:
+
+```python
+number = 10 / 0
+```
+
+Output:
+
+```python
+ZeroDivisionError
+```
+
+---
+
+## Handling Exceptions
+
+Python provides the `try` and `except` statements to handle exceptions.
+
+Example:
+
+```python
+try:
+
+    number = 10 / 0
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero.")
+```
+
+Output:
+
+```python
+Cannot divide by zero.
+```
+
+Handling exceptions prevents unexpected program crashes.
+
+---
+
+# Custom Exceptions
+
+## Why Create Custom Exceptions?
+
+Built-in exceptions are useful, but applications often require more meaningful errors.
+
+Custom exceptions allow developers to define application-specific error types.
+
+Example:
+
+```python
+class ShapeMismatchError(Exception):
+    pass
+```
+
+Now this exception can be raised whenever tensor shapes do not match.
+
+---
+
+## Raising a Custom Exception
+
+Example:
+
+```python
+class ShapeMismatchError(Exception):
+    pass
+
+raise ShapeMismatchError("Tensor sizes must match.")
+```
+
+Output:
+
+```python
+ShapeMismatchError: Tensor sizes must match.
+```
+
+---
+
+## Another Example
+
+```python
+class InvalidDataTypeError(Exception):
+    pass
+
+def process(value):
+
+    if not isinstance(value, (int, float)):
+        raise InvalidDataTypeError("Only numeric values are allowed.")
+
+process("Hello")
+```
+
+Output:
+
+```python
+InvalidDataTypeError: Only numeric values are allowed.
+```
+
+Custom exceptions make debugging much easier.
+
+---
+
+
 # Important Revision Points
 
 Type hints specify the expected types of variables, parameters, and return values.
