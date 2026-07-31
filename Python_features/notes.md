@@ -851,6 +851,113 @@ Custom exceptions make debugging much easier.
 
 ---
 
+# SOLID Principles
+
+## What are SOLID Principles?
+
+SOLID is a collection of software design principles that help create clean, maintainable, and scalable applications.
+
+The five principles are:
+
+- Single Responsibility Principle (SRP)
+- Open/Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+
+In this roadmap, the primary focus is on SRP and ISP.
+
+---
+
+# Single Responsibility Principle (SRP)
+
+## What is SRP?
+
+A class should have only one responsibility.
+
+It should have only one reason to change.
+
+Bad Example:
+
+```python
+class Report:
+
+    def generate(self):
+        pass
+
+    def save(self):
+        pass
+
+    def email(self):
+        pass
+```
+
+This class has multiple responsibilities.
+
+Better Example:
+
+```python
+class ReportGenerator:
+
+    def generate(self):
+        pass
+
+class ReportSaver:
+
+    def save(self):
+        pass
+
+class ReportEmailer:
+
+    def email(self):
+        pass
+```
+
+Each class now has a single responsibility.
+
+---
+
+# Interface Segregation Principle (ISP)
+
+## What is ISP?
+
+Clients should not be forced to depend on methods they do not use.
+
+Instead of creating one large interface, create multiple smaller interfaces.
+
+Bad Example:
+
+```python
+class Worker:
+
+    def work(self):
+        pass
+
+    def eat(self):
+        pass
+```
+
+Not every worker may require both methods.
+
+Better design separates unrelated behaviors into different interfaces.
+
+This results in cleaner and more flexible code.
+
+---
+
+# Why Follow SOLID Principles?
+
+SOLID principles help developers:
+
+- Reduce code duplication
+- Improve maintainability
+- Increase flexibility
+- Simplify testing
+- Build scalable applications
+
+They are widely used in enterprise software development.
+
+---
 
 # Important Revision Points
 
@@ -873,3 +980,25 @@ The `|` operator provides a shorter syntax for `Union` in Python 3.10+.
 `Protocol` enables structural typing by defining required methods or attributes.
 
 Static typing improves code quality, readability, and maintainability while reducing runtime errors.
+
+Context managers automatically manage resources using the `with` statement.
+
+`__enter__()` executes when entering the context.
+
+`__exit__()` executes when leaving the context and performs cleanup.
+
+`tracemalloc` tracks memory allocations during program execution.
+
+Memory monitoring helps identify memory leaks and optimize applications.
+
+Exceptions are runtime errors that can interrupt program execution.
+
+`try` and `except` allow programs to handle exceptions safely.
+
+Custom exceptions represent application-specific error conditions.
+
+The Single Responsibility Principle (SRP) states that a class should have only one responsibility.
+
+The Interface Segregation Principle (ISP) encourages creating small, focused interfaces instead of large, general-purpose ones.
+
+Applying SOLID principles results in cleaner, more maintainable, and scalable software.

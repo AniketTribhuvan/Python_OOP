@@ -72,4 +72,5 @@ Python_features/
   06_solid_safety/
     01_enter_and_exit_methods.md                # Understanding __enter__ & __exit__ methods
     02_custom_exceptions.md                     # Understanding custom exceptions
+    03_solid_principles.md                      # Single Responsibility Principle (SRP) & Interface Segregation Principle (ISP)
 ```
