@@ -26,8 +26,12 @@ Hi! 👋 This repository documents my journey of learning **Object-Oriented Prog
 
 ```text
 Python_OOP/
+
   Core_OOP/             # Classes, objects, constructors, encapsulation, inheritance, and composition
+
   Advanced_OOP/         # Class/static methods, multiple/hybrid inheritance, introspection, magic methods, operator overloading, object representation, and abstraction
+
+  Python_features/      # Decorators, lazy data streaming, type hints, TypeVar, Callables, Union, Protocol, mypy validation, Context managers, custom exceptions, memory optimization, and SOLID principles
 ```
 
 ---
@@ -41,6 +45,14 @@ Python_OOP/
 - Object Representation
 - Memory Optimization (`__slots__`)
 - Abstract Base Classes (ABC)
+- Callable Objects (`__call__`)
+- Decorators & Generators
+- Lazy Data Streaming
+- Static Typing (`TypeVar`, `Callable`, `Union`, `Protocol`)
+- `mypy` Type Validation
+- Context Managers
+- Custom Exceptions
+- SOLID Principles
 
 ---
 
@@ -50,6 +62,11 @@ Python_OOP/
 - Building reusable Python components
 - Mathematical engine development
 - Memory-efficient programming
+- Generator-based data pipelines
+- Type-safe Python programming
+- Defensive programming with custom exceptions
+- Applying SOLID principles
+- Designing modular and scalable software
 
 ---
 
