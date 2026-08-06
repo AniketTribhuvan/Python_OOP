@@ -70,6 +70,26 @@ Python_OOP/
 
 ---
 
+# 🚀 Mini Tensor Engine
+
+The final project of this repository is a **Mini Tensor Engine**.
+
+It combines everything learned throughout the roadmap into a single project featuring:
+
+- Custom `Tensor1D` implementation
+- Operator overloading
+- Abstract interfaces
+- Lazy data streaming
+- Performance telemetry
+- Memory optimization
+- Static typing
+- Custom exceptions
+- SOLID-based architecture
+
+This project serves as the bridge between Python OOP and future AI/ML development.
+
+---
+
 # ▶️ How to Run
 
 Clone the repository:
